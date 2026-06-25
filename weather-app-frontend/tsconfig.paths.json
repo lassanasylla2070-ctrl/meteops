@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@apiTypes": ["types/api-types"],
+      "@components/*": ["components/*"],
+      "@constants/*": ["constants/*"],
+      "@enums/*": ["types/enums/*"],
+      "@errors/*": ["errors/*"],
+      "@hooks/*": ["hooks/*"],
+      "@interfaces/*": ["types/interfaces/*"],
+      "@locales/*": ["locales/*"],
+      "@queries/*": ["queries/*"],
+      "@routes/*": ["routes/*"],
+      "@store/*": ["store/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"]
+    }
+  }
+}

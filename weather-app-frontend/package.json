@@ -1,0 +1,70 @@
+{
+  "name": "weather-app-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^5.7.0",
+    "@date-io/luxon": "1.x",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/pickers": "^3.2.10",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/i18next": "^13.0.0",
+    "@types/jest": "^24.0.0",
+    "@types/luxon": "^1.25.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-i18next": "^8.1.0",
+    "@types/react-router-dom": "^5.1.6",
+    "axios": "^0.20.0",
+    "classnames": "^2.2.6",
+    "craco-alias": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "i18next": "^19.8.2",
+    "luxon": "^1.25.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.3",
+    "react-query": "^2.23.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "typescript": "~3.7.2",
+    "use-debounce": "^5.0.1"
+  },
+  "devDependencies": {
+    "swagger-typescript-api": "^1.12.0",
+    "ts-node": "^9.0.0"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "generate-swagger-types": "ts-node --script-mode ./scripts/generate-swagger-types.ts"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

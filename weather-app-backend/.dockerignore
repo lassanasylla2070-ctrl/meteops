@@ -1,0 +1,9 @@
+*
+!/src
+!/test
+!package.json
+!yarn.lock
+!tsconfig.json
+!tsconfig.build.json
+!nest-cli.json
+!ecosystem.config.js

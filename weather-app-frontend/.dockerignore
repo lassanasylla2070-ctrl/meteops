@@ -1,0 +1,11 @@
+*
+!/.server
+!/src
+!/public
+!/scripts
+!.env*
+!package.json
+!yarn.lock
+!craco.config.js
+!tsconfig.json
+!tsconfig.paths.json
