@@ -1,6 +1,6 @@
-# Weather App
-Weather App allows checking the weather forecast for a selected city and a single day in the current month or upcoming 5-days.
-
+# API WEATHERAPP
+remplacement de l'api car metaweather n'existe plus.
+Nouvelle API open-meteo
 ## Tech Stack
 Weather App API based on [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
