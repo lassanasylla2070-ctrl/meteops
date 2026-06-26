@@ -4,13 +4,12 @@ import { DateTime } from 'luxon';
 import { Between, MoreThanOrEqual, Repository } from 'typeorm';
 import { nowUTC } from '../../common/utils/date.util';
 import { ConfigService } from '../../config/config.service';
-import { WeatherDataProvider } from '../../weather/interfaces/weather-data-provider.interface';
 import { Weather } from '../models/weather.model';
 import { MetaWeatherClientService } from './meta-weather-client.service';
 import { MetaWeather } from './meta-weather.entity';
 
 @Injectable()
-export class MetaWeatherService implements WeatherDataProvider {
+export class MetaWeatherService {
   constructor(
     @InjectRepository(MetaWeather) readonly repository: Repository<MetaWeather>,
     private readonly clientService: MetaWeatherClientService,
