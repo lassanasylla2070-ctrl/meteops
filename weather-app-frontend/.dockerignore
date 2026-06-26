@@ -9,3 +9,4 @@
 !craco.config.js
 !tsconfig.json
 !tsconfig.paths.json
+!nginx.conf
