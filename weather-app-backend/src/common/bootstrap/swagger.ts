@@ -8,7 +8,7 @@ export const configureSwagger = (app: NestExpressApplication, config: ConfigServ
   const { apiVersion } = config.getServerConfig();
   const options = new DocumentBuilder().setTitle('Weather app API').setVersion(`${apiVersion}.0`).build();
   const document = SwaggerModule.createDocument(app, options, {
-    extraModels: [FindByCityDto, FindByCityAndDateDto],
+    extraModels: [],
   });
 
   SwaggerModule.setup('api', app, document, {
