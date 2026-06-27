@@ -28,7 +28,7 @@ jobs:
       # -------- BACKEND --------
       - name: Install backend dependencies
         working-directory: ./weather-app-backend
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Run backend tests
         working-directory: ./weather-app-backend
@@ -37,7 +37,7 @@ jobs:
       # -------- FRONTEND --------
       - name: Install frontend dependencies
         working-directory: ./weather-app-frontend
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build frontend
         working-directory: ./weather-app-frontend
