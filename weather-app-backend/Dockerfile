@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --network-timeout 600000
 
 COPY . .
 
@@ -16,10 +16,10 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install --production
+RUN yarn install --production --network-timeout 600000
 
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 3000
+EXPOSE 3001
 
 CMD ["node", "dist/main"]
