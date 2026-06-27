@@ -7,3 +7,4 @@
 !tsconfig.build.json
 !nest-cli.json
 !ecosystem.config.js
+!/node_modules
