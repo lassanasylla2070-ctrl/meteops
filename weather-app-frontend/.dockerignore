@@ -10,3 +10,4 @@
 !tsconfig.json
 !tsconfig.paths.json
 !nginx.conf
+!/node_modules
