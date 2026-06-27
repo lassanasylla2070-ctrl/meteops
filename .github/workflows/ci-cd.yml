@@ -49,7 +49,7 @@ jobs:
   # =========================
   docker:
     runs-on: ubuntu-latest
-    needs: build-test
+    needs: build-test  #"Le job docker ne démarre que si le job build-test a réussi."
 
     steps:
       # Récupérer le code
