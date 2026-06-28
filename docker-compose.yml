@@ -4,12 +4,13 @@ services:
       context: ./weather-app-backend
       network: host
     container_name: meteops-backend
-    ports:
-      - "3001:3001"
+    network_mode: host
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     env_file:
       - .env
     restart: unless-stopped
-
   frontend:
     build:
       context: ./weather-app-frontend

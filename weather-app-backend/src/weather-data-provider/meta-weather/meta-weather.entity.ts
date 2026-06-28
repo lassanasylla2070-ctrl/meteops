@@ -60,8 +60,16 @@ export class MetaWeather implements Weather {
 
   @Expose()
   get iconUrl(): string {
-    return `https://www.metaweather.com/static/img/weather/${this.stateAbbr}.svg`;
-  }
+  const iconMap: Record<string, string> = {
+    sn: '13d', sl: '13d', h: '13d',
+    t: '11d',
+    hr: '10d', lr: '10d', s: '09d',
+    hc: '04d', lc: '02d',
+    c: '01d',
+  };
+  const code = iconMap[this.stateAbbr] || '01d';
+  return `https://openweathermap.org/img/wn/${code}@2x.png`;
+}
 
   constructor(creationModel: MetaWeatherCreation) {
     Object.assign(this, creationModel);
