@@ -50,3 +50,9 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     restart: unless-stopped
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: meteops-node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
