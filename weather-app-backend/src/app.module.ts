@@ -7,6 +7,7 @@ import { TypeOrmConfigService } from './config/services-config/typeorm-config.se
 import { LoggerModule } from './logger/logger.module';
 import { MetaWeatherModule } from './weather-data-provider/meta-weather/meta-weather.module';
 import { LogRequestInterceptor } from './common/interceptors/log-request.interceptor';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { LogRequestInterceptor } from './common/interceptors/log-request.interce
     ConfigModule,
     LoggerModule,
     MetaWeatherModule,
+    WeatherModule,
   ],
   providers: [
     {

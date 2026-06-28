@@ -20,6 +20,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     const sqliteConfig: SqliteConnectionOptions = {
       type: 'sqlite',
       database,
+      synchronize: restDatabaseConfig.synchronize,
     };
 
     const postgresConfig: PostgresConnectionOptions = {
