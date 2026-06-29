@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: meteops-frontend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: meteops-frontend
+
+  template:
+    metadata:
+      labels:
+        app: meteops-frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: meteops-frontend:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 3000

@@ -1,0 +1,45 @@
+---
+- name: Déploiement MeteoPS
+  hosts: meteops_vps
+  become: true
+
+  tasks:
+    - name: Mise à jour des paquets
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Installer les dépendances
+      apt:
+        name:
+          - git
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Démarrer Docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Installer les dépendances Kubernetes
+      apt:
+        name:
+          - apt-transport-https
+          - curl
+          - gnupg
+        state: present
+
+
+    - name: Installer K3s
+      shell: curl -sfL https://get.k3s.io | sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+
+    - name: Vérifier que K3s est actif
+      systemd:
+        name: k3s
+        state: started
+        enabled: true

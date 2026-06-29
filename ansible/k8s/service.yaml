@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: meteops-frontend-service
+
+spec:
+  selector:
+    app: meteops-frontend
+
+  ports:
+    - port: 80
+      targetPort: 3000
+
+  type: NodePort
