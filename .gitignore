@@ -3,3 +3,9 @@
 *.iml
 out
 gen
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.backup
+.env.production
+.env.development
