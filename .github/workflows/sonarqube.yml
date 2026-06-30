@@ -31,4 +31,5 @@ jobs:
             -Dsonar.projectKey=meteops
             -Dsonar.projectName=MeteOps
             -Dsonar.sources=src
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
