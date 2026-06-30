@@ -1,0 +1,15 @@
+---
+backend_image: "lassana2/meteops-backend:latest"
+frontend_image: "lassana2/meteops-frontend:latest"
+
+backend_env:
+  PORT: "3001"
+  ENV: "local"
+  DATABASE_SYNC: "true"
+  WEATHER_API_URL: "https://api.open-meteo.com"
+  DEBUG: "false"
+
+frontend_env:
+  REACT_APP_API_URL: "http://57.130.30.149"
+  REACT_APP_DEFAULT_CITY: "Paris"
+  REACT_APP_ENV: "production"

@@ -132,10 +132,15 @@ resource "openstack_networking_secgroup_v2" "meteops_firewall" {
   description = "Default security group"
 }
 
+resource "openstack_compute_keypair_v2" "meteops_keypair" {
+  name       = "meteops-key"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
 resource "openstack_compute_instance_v2" "meteops_instance" {
   name            = "meteops-instance"
   image_id        = "b9fbb2e2-51d7-4ded-a8bb-c0442d101580"
   flavor_id       = "91fa3187-0f7d-489e-a75e-a7f6541482ee"
+  key_pair        = openstack_compute_keypair_v2.meteops_keypair.name
   security_groups = [openstack_networking_secgroup_v2.meteops_firewall.name]
  
   network {
@@ -146,3 +151,5 @@ resource "openstack_compute_instance_v2" "meteops_instance" {
 output "meteops_instance_ip" {
   value = openstack_compute_instance_v2.meteops_instance.network[0].fixed_ip_v4
 }
+
+

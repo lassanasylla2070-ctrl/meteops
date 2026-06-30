@@ -2,6 +2,8 @@
 - name: Déploiement MeteoPS
   hosts: meteops_vps
   become: true
+  vars_files:
+    - vars.yml
 
   tasks:
     - name: Mise à jour des paquets
@@ -31,15 +33,56 @@
           - gnupg
         state: present
 
-
     - name: Installer K3s
       shell: curl -sfL https://get.k3s.io | sh -
       args:
         creates: /usr/local/bin/k3s
-
 
     - name: Vérifier que K3s est actif
       systemd:
         name: k3s
         state: started
         enabled: true
+
+    - name: Cloner le dépôt MétéOps
+      git:
+        repo: 'https://github.com/lassanasylla2070-ctrl/meteops.git'
+        dest: /home/debian/meteops
+        version: main
+        force: yes
+
+    - name: Créer le fichier .env.production du frontend
+      copy:
+        dest: /home/debian/meteops/weather-app-frontend/.env.production
+        content: |
+          REACT_APP_ENV={{ frontend_env.REACT_APP_ENV }}
+          REACT_APP_API_URL={{ frontend_env.REACT_APP_API_URL }}:3001/api/v1/
+          REACT_APP_DEFAULT_CITY={{ frontend_env.REACT_APP_DEFAULT_CITY }}
+
+    - name: Créer le fichier .env.development du frontend
+      copy:
+        dest: /home/debian/meteops/weather-app-frontend/.env.development
+        content: |
+          REACT_APP_ENV={{ frontend_env.REACT_APP_ENV }}
+          REACT_APP_API_URL={{ frontend_env.REACT_APP_API_URL }}:3001/api/v1/
+          REACT_APP_DEFAULT_CITY={{ frontend_env.REACT_APP_DEFAULT_CITY }}
+
+    - name: Créer le fichier .env du backend
+      copy:
+        dest: /home/debian/meteops/.env
+        content: |
+          PORT={{ backend_env.PORT }}
+          ENV={{ backend_env.ENV }}
+          DATABASE_NAME=weather
+          DATABASE_SYNC={{ backend_env.DATABASE_SYNC }}
+          WEATHER_API_URL={{ backend_env.WEATHER_API_URL }}
+          DEBUG={{ backend_env.DEBUG }}
+
+    - name: Supprimer tous les conteneurs MétéOps résiduels si présents
+      shell: docker rm -f meteops-backend meteops-frontend meteops-grafana meteops-prometheus meteops-cadvisor meteops-node-exporter
+      ignore_errors: yes
+
+    - name: Lancer Docker Compose
+      command: docker-compose up -d --build
+      args:
+        chdir: /home/debian/meteops
