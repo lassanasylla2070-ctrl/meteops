@@ -10,6 +10,6 @@ backend_env:
   DEBUG: "false"
 
 frontend_env:
-  REACT_APP_API_URL: "http://57.130.30.149"
+  REACT_APP_API_URL: "http://57.130.30.149:30001"
   REACT_APP_DEFAULT_CITY: "Paris"
   REACT_APP_ENV: "production"

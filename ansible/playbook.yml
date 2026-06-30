@@ -78,11 +78,18 @@
           WEATHER_API_URL={{ backend_env.WEATHER_API_URL }}
           DEBUG={{ backend_env.DEBUG }}
 
-    - name: Supprimer tous les conteneurs MétéOps résiduels si présents
-      shell: docker rm -f meteops-backend meteops-frontend meteops-grafana meteops-prometheus meteops-cadvisor meteops-node-exporter
-      ignore_errors: yes
+    - name: Générer le manifest Kubernetes backend
+      template:
+        src: templates/backend-deployment.yaml.j2
+        dest: /tmp/backend-deployment.yaml
 
-    - name: Lancer Docker Compose
-      command: docker-compose up -d --build
-      args:
-        chdir: /home/debian/meteops
+    - name: Générer le manifest Kubernetes frontend
+      template:
+        src: templates/frontend-deployment.yaml.j2
+        dest: /tmp/frontend-deployment.yaml
+
+    - name: Appliquer le manifest backend sur K3s
+      command: k3s kubectl apply -f /tmp/backend-deployment.yaml
+
+    - name: Appliquer le manifest frontend sur K3s
+      command: k3s kubectl apply -f /tmp/frontend-deployment.yaml
