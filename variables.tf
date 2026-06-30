@@ -1,29 +1,58 @@
-# ============================================================
-# VARIABLES.TF — Déclaration des variables sensibles OVH
-# ============================================================
-# Ce fichier déclare les variables que Terraform attend.
-# Il ne contient AUCUNE valeur réelle : juste le "type" et le fait
-# qu'elles sont sensibles (donc masquées dans les logs/plan/apply).
-# Les vraies valeurs sont remplies dans terraform.tfvars.
-# ============================================================
+#############################################
+# VARIABLES OVH - AUTHENTIFICATION API
+#############################################
 
-# --- Clé Application OVH ---
+# Ces variables contiennent les identifiants nécessaires pour se connecter à l’API OVH.
+# Elles sont marquées "sensitive" pour éviter toute exposition dans les logs Terraform.
+
+# Clé publique de l’application OVH
+# Générée via : https://eu.api.ovh.com/createToken/
 variable "ovh_application_key" {
-  description = "Clé Application générée sur https://eu.api.ovh.com/createToken/"
-  type        = string
-  sensitive   = true # Terraform masquera cette valeur dans les outputs/logs
-}
-
-# --- Secret Application OVH ---
-variable "ovh_application_secret" {
-  description = "Secret Application associé à la clé ci-dessus"
+  description = "Clé Application générée sur OVH API (token public)"
   type        = string
   sensitive   = true
 }
 
-# --- Consumer Key OVH ---
+# Secret associé à l’application OVH
+# Permet de signer les requêtes API de manière sécurisée
+variable "ovh_application_secret" {
+  description = "Secret Application associé à la clé OVH"
+  type        = string
+  sensitive   = true
+}
+
+# Consumer Key : autorise l’accès et les actions sur le compte OVH
+# Elle définit les permissions accordées lors de la création du token
 variable "ovh_consumer_key" {
-  description = "Consumer Key qui autorise les actions sur ton compte OVH"
+  description = "Consumer Key autorisant les actions sur le compte OVH"
+  type        = string
+  sensitive   = true
+}
+
+#############################################
+# VARIABLES OPENSTACK - AUTHENTIFICATION
+#############################################
+
+# Ces variables permettent l’authentification auprès du cloud OpenStack OVH.
+
+# Nom d’utilisateur OpenStack
+variable "os_username" {
+  description = "Nom d'utilisateur OpenStack"
+  type        = string
+  sensitive   = true   # Empêche l'affichage dans les logs Terraform
+}
+
+# Mot de passe OpenStack
+variable "os_password" {
+  description = "Mot de passe associé au compte OpenStack"
+  type        = string
+  sensitive   = true
+}
+
+# ID du projet OpenStack (tenant)
+# Il identifie le projet dans lequel les ressources seront créées
+variable "os_tenant_id" {
+  description = "ID du projet OpenStack (tenant)"
   type        = string
   sensitive   = true
 }
