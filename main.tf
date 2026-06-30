@@ -132,4 +132,17 @@ resource "openstack_networking_secgroup_v2" "meteops_firewall" {
   description = "Default security group"
 }
 
-
+resource "openstack_compute_instance_v2" "meteops_instance" {
+  name            = "meteops-instance"
+  image_id        = "b9fbb2e2-51d7-4ded-a8bb-c0442d101580"
+  flavor_id       = "91fa3187-0f7d-489e-a75e-a7f6541482ee"
+  security_groups = [openstack_networking_secgroup_v2.meteops_firewall.name]
+ 
+  network {
+    uuid = openstack_networking_network_v2.meteops_network.id
+  }
+}
+ 
+output "meteops_instance_ip" {
+  value = openstack_compute_instance_v2.meteops_instance.network[0].fixed_ip_v4
+}
