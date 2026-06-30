@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/docker-backend
+      - feature/sonarqube
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -30,3 +31,4 @@ jobs:
             -Dsonar.projectKey=meteops
             -Dsonar.projectName=MeteOps
             -Dsonar.sources=src
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
