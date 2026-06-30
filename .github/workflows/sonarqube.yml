@@ -28,7 +28,7 @@ jobs:
         with:
           projectBaseDir: weather-app-backend
           args: >
-            -Dsonar.projectKey=meteops
+            -Dsonar.projectKey=MeteOps
             -Dsonar.projectName=MeteOps
             -Dsonar.sources=src
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
