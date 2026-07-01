@@ -79,10 +79,11 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/meteops-backend:latest
 
       # ================= FRONTEND =================
+      # On crée le fichier .env avant le build Docker pour que le build (souvent fait à l'intérieur du Dockerfile) l'embarque.
       - name: Create frontend .env.production
         run: |
           echo "REACT_APP_ENV=production" > ./weather-app-frontend/.env.production
-          echo "REACT_APP_API_URL=https://meteops.cloud" >> ./weather-app-frontend/.env.production
+          echo "REACT_APP_API_URL=https://meteops.cloud/api/v1" >> ./weather-app-frontend/.env.production
           echo "REACT_APP_DEFAULT_CITY=Paris" >> ./weather-app-frontend/.env.production
 
       - name: Build frontend image
