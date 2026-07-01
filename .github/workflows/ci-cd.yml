@@ -82,7 +82,7 @@ jobs:
       - name: Create frontend .env.production
         run: |
           echo "REACT_APP_ENV=production" > ./weather-app-frontend/.env.production
-          echo "REACT_APP_API_URL=http://57.130.30.149:30001/api/v1/" >> ./weather-app-frontend/.env.production
+          echo "REACT_APP_API_URL=http://meteops.cloud" >> ./weather-app-frontend/.env.production
           echo "REACT_APP_DEFAULT_CITY=Paris" >> ./weather-app-frontend/.env.production
       - name: Build frontend image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/meteops-frontend:latest ./weather-app-frontend
