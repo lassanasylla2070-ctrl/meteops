@@ -82,20 +82,12 @@ jobs:
       - name: Create frontend .env.production
         run: |
           echo "REACT_APP_ENV=production" > ./weather-app-frontend/.env.production
-          echo "REACT_APP_API_URL=http://meteops.cloud" >> ./weather-app-frontend/.env.production
+          echo "REACT_APP_API_URL=https://meteops.cloud" >> ./weather-app-frontend/.env.production
           echo "REACT_APP_DEFAULT_CITY=Paris" >> ./weather-app-frontend/.env.production
+
       - name: Build frontend image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/meteops-frontend:latest ./weather-app-frontend
 
-      # Scan sécurité frontend (Trivy)
-      - name: Scan frontend image (Trivy)
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/meteops-frontend:latest
-      - name: Push frontend image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/meteops-frontend:latest
-
-      # Scan sécurité frontend (Trivy)
       - name: Scan frontend image (Trivy)
         uses: aquasecurity/trivy-action@master
         with:
